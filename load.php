@@ -14,21 +14,15 @@ require_once "core/Web.class.php";
 require_once "src/pages/Page.class.php";
 
 // ページクラスをロード
-$uri = explode("/", $_SERVER["REQUEST_URI"]);
-$class = "Top";
-$method = "index";
-if (!empty($uri[1])) {
-	$class = $uri[1];
-}
-if (!empty($uri[2])) {
-	$method = $uri[2];
-} 
+$class_method = Web::get_class_method($_SERVER["REQUEST_URI"]);
+$class = $class_method["class"];
+$method = $class_method["method"];
 $page_path = PAGE_ROOT."/$class/$class.class.php";
 require_once $page_path;
 
 $obj = new $class();
+$obj->parse_params_from_web();
 $obj->$method();
-
 
 
 ?>
