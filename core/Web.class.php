@@ -12,6 +12,10 @@ class Web extends Object {
 		$con = $db_conf["connection"];
 		$this->DB = new DB($con["host"], $con["database"], $con["user"], $con["passwd"]);
 	}
+
+	function __destruct() {
+		$this->DB->close();
+	}
 }
 
 ?>
