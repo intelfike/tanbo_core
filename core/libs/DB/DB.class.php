@@ -1,5 +1,4 @@
 <?php
-include "";
 
 class DB extends Object {
 	var $connection = null;

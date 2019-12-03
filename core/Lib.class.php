@@ -1,8 +1,16 @@
 <?php
 
 class Lib extends Object {
+	private $dir = "core/libs";
+
+	function __construct($dir = null) {
+		if (!empty($dir)) {
+			$this->dir = $dir;
+		}
+	}
+
 	function load($class) {
-		require_once dirname(__FILE__)."/libs/".$class.".class.php";
+		require_once $this->dir."/".$class."/".$class.".class.php";
 	}
 
 	function load_all($class_array) {

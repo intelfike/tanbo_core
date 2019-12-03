@@ -8,11 +8,8 @@ chdir(dirname(__FILE__));
 require_once "core/Object.class.php";
 require_once "core/Config.class.php";
 require_once "core/Lib.class.php";
+require_once "core/Web.class.php";
 
-// 設定ファイルを読み取り、ライブラリをロードする
-$config = new Config();
-$data = $config->load_all(["DB"]);
-var_dump($data);
-
+$web = new Web();
 
 ?>

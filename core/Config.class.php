@@ -10,8 +10,8 @@ class Config extends Object {
 	}
 
 	// 設定ファイルを読み取り、データを返す
-	function load($file) {
-		$path = $this->dir."/".$file;
+	function load_json1($file) {
+		$path = $this->dir."/".$file.".json";
 		if (!file_exists($path)) {
 			throw new Exception("Config file '$path' is not exists.");
 		}
@@ -28,14 +28,15 @@ class Config extends Object {
 		}
 		return $config["config"];
 	}
-
+/*
 	function load_all($files = []) {
 		$results = [];
 		foreach ($files as $file) {
-			$results[$file] = $this->load($file.".json");
+			$results[$file] = $this->load($file);
 		}
 		return $results;
 	}
+*/
 }
 
 ?>
