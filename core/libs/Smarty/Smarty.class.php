@@ -1,10 +1,10 @@
 <?php
 
-require_once 'smarty/Smarty.class.php';
+require_once dirname(__FILE__).'/smarty/libs/bootstrap.php';
 
+/*
 class Smarty extends Object {
-	var $smarty = null;
-	var $layout = "";
+	private $smarty = null;
 
 	function __construct($template_dir, $compile_dir) {
 		$this->smarty = new Smarty();
@@ -16,9 +16,9 @@ class Smarty extends Object {
 		$this->smarty->assign($key, $value);
 	}
 
-	function fetch() {
-		return $this->smarty->fetch();
+	function fetch($file) {
+		return $this->smarty->fetch($file);
 	}
 }
-
+*/
 ?>

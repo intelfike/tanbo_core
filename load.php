@@ -1,5 +1,7 @@
 <?php
 
+ini_set('display_errors', 1);
+
 // フレームワークのルートに移動
 define("ROOT", dirname(__FILE__));
 define("PAGE_ROOT", ROOT."/src/pages");
@@ -20,9 +22,9 @@ $method = $class_method["method"];
 $page_path = PAGE_ROOT."/$class/$class.class.php";
 require_once $page_path;
 
-$obj = new $class();
+$obj = new $class($class, $method);
 $obj->parse_params_from_web();
 $obj->$method();
-
+$obj->render();
 
 ?>

@@ -10,7 +10,7 @@ class Config extends Object {
 	}
 
 	// 設定ファイルを読み取り、データを返す
-	function load_json1($file) {
+	function load_json_ver1($file) {
 		$path = $this->dir."/".$file.".json";
 		if (!file_exists($path)) {
 			throw new Exception("Config file '$path' is not exists.");
