@@ -1,13 +1,9 @@
 <?php
 class Web extends Object {
-	const DEFAULT_CLASS  = "Top";
-	const DEFAULT_METHOD = "index";
 	private $class;
 	private $method;
 
-	private $layout_dir;
 	private $layout = "default";
-	private $page_dir;
 	private $page = "index";
 
 	// ライブラリ
@@ -22,16 +18,14 @@ class Web extends Object {
 	var $GET;
 	var $POST;
 
-
 	function __construct($class, $method) {
 		$this->class =  $class;
 		$this->method = $method;
 		$this->page =   $method;
 
-		$config = new Config();
-		$lib = new Lib();
+		$config = new Config(CONFIGS_ROOT);
+		$lib = new Lib(LIBS_ROOT);
 		$lib->load_all(["DB", "Smarty"]);
-		// 設定ファイルを読み取り、ライブラリをロードする
 		// DB設定
 		$db_conf = $config->load_json_ver1("DB");
 		$con = $db_conf["connection"];
@@ -39,24 +33,8 @@ class Web extends Object {
 		// SMARTY設定
 		$smarty_conf = $config->load_json_ver1("smarty");
 		$this->SMARTY = new Smarty();
-		$this->SMARTY->setTemplateDir($smarty_conf["template_dir"]);
-		$this->SMARTY->setCompileDir( $smarty_conf["compile_dir"]);
-		$this->layout_dir = $smarty_conf["layout_dir"];
-		$this->page_dir = $smarty_conf["page_dir"];
-	}
-
-	function __destruct() {
-		// DBの接続を切断する
-		$this->DB->close();
-	}
-
-	function render() {
-                // テンプレートを描画する
-		$page_path = $this->page_dir ."/". $this->class ."/". $this->page.".tpl";
-                $this->SMARTY->assign("PAGE_NAME", $page_path);
-
-		$layout_path = ROOT."/".$this->layout_dir."/".$this->layout.".tpl";
-                $this->SMARTY->display($layout_path);
+		$this->SMARTY->setTemplateDir(SRC_ROOT."/".$smarty_conf["template_dir"]);
+		$this->SMARTY->setCompileDir(SRC_ROOT."/".$smarty_conf["compile_dir"]);
 	}
 
 	function parse_params_from_web() {
@@ -84,25 +62,18 @@ class Web extends Object {
 		$this->POST   = $POST;
 	}
 
-	// URIから、呼び出すクラス・メソッド名を抽出する
-	static function get_class_method($URI) {
-		$uri = explode("/", $URI);
-		$class = Web::DEFAULT_CLASS;
-		$method = Web::DEFAULT_METHOD;
-		if (!empty($uri[1])) {
-		        $class = $uri[1];
-		}
-		if (!empty($uri[2])) {
-		        $method = $uri[2];
-		}
-		$result = [
-			"class"       => $class,
-			"method"      => $method,
-		];
-		if (!empty($uri[3])) {
-			$result["after_params"] = array_slice($uri, 3);
-		}
-		return $result;
+	function render() {
+		// テンプレートを描画する
+		$page_path = PAGES_ROOT ."/". $this->class ."/". $this->page.".tpl";
+		$this->SMARTY->assign("PAGE_NAME", $page_path);
+
+		$layout_path = TPL_ROOT."/layout/".$this->layout.".tpl";
+		$this->SMARTY->display($layout_path);
+	}
+
+	function __destruct() {
+		// DBの接続を切断する
+		$this->DB->close();
 	}
 }
 ?>

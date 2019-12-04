@@ -1,0 +1,14 @@
+{
+	"version" : "1",
+	"config" : {
+		"tanbo" : {
+			"libs_dir" : "core/libs"
+		},
+		"src" : {
+			"src_dir"     : "../src",
+			"configs_dir" : "../src/manage/configs",
+			"pages_dir"   : "../src/pages",
+			"tpl_dir"     : "../src/tpl"
+		}
+	}
+}

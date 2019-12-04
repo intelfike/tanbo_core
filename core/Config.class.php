@@ -1,7 +1,7 @@
 <?php
 
 class Config extends Object {
-	private $dir = "src/config";
+	private $dir = "";
 
 	function __construct($dir = null) {
 		if (!empty($dir)) {
@@ -28,15 +28,6 @@ class Config extends Object {
 		}
 		return $config["config"];
 	}
-/*
-	function load_all($files = []) {
-		$results = [];
-		foreach ($files as $file) {
-			$results[$file] = $this->load($file);
-		}
-		return $results;
-	}
-*/
 }
 
 ?>

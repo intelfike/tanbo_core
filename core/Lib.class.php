@@ -1,7 +1,7 @@
 <?php
 
 class Lib extends Object {
-	private $dir = "core/libs";
+	private $dir = "";
 
 	function __construct($dir = null) {
 		if (!empty($dir)) {
