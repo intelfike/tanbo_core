@@ -14,23 +14,23 @@ class DB extends Object {
 		foreach ($params as $key => $param) {
 				$type = PDO::PARAM_STR;
 			switch(true){
-			case is_bool($bind) :
+			case is_bool($param) :
 				$type = PDO::PARAM_BOOL;
 				break;
-			case is_null($bind) :
+			case is_null($param) :
 				$type = PDO::PARAM_NULL;
 				break;
-			case is_int($bind) :
+			case is_int($param) :
 				$type = PDO::PARAM_INT;
 				break;
-			case is_float($bind) :
-			case is_numeric($bind) :
-			case is_string($bind) :
+			case is_float($param) :
+			case is_numeric($param) :
+			case is_string($param) :
 			default:
 				$type = PDO::PARAM_STR;
 				break;
 			}
-			$stmt->bindParam($key, "".$param, $type);
+			$stmt->bindParam($key, $param, $type);
 		}
 		$stmt->execute();
 		$fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);

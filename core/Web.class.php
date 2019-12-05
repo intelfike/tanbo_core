@@ -3,8 +3,8 @@ class Web extends Object {
 	private $class;
 	private $method;
 
-	private $layout = "default";
-	private $page = "index";
+	protected $layout = "default";
+	protected $page = "index";
 
 	// ライブラリ
 	var $DB     = null;
