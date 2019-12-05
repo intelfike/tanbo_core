@@ -1,6 +1,6 @@
 <?php
 
-class Config extends Object {
+class Config extends TanboRoot {
 	private $dir = "";
 
 	function __construct($dir = null) {

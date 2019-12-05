@@ -1,6 +1,6 @@
 <?php
 
-class DB extends Object {
+class DB extends TanboRoot {
 	var $connection = null;
 
 	function __construct($host, $db, $user, $pw) {

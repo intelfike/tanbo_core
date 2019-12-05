@@ -1,5 +1,5 @@
 <?php
-class Web extends Object {
+class Web extends TanboRoot {
 	private $class;
 	private $method;
 

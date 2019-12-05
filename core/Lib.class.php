@@ -1,6 +1,6 @@
 <?php
 
-class Lib extends Object {
+class Lib extends TanboRoot {
 	private $dir = "";
 
 	function __construct($dir = null) {

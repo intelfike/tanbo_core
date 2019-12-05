@@ -7,7 +7,7 @@ chdir(dirname(__FILE__));
 ini_set('display_errors', 1);
 
 // 必要なファイルをロード
-require_once "core/Object.class.php";
+require_once "core/TanboRoot.class.php";
 require_once "core/Config.class.php";
 require_once "core/Lib.class.php";
 require_once "core/Web.class.php";
