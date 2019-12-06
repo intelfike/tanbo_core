@@ -12,7 +12,7 @@ class DB extends TanboRoot {
 	public function query($sql, $params = []) {
 		$stmt = $this->connection->prepare($sql);
 		foreach ($params as $key => $param) {
-				$type = PDO::PARAM_STR;
+			$type = PDO::PARAM_STR;
 			switch(true){
 			case is_bool($param) :
 				$type = PDO::PARAM_BOOL;
@@ -30,11 +30,12 @@ class DB extends TanboRoot {
 				$type = PDO::PARAM_STR;
 				break;
 			}
-			$stmt->bindParam($key, $param, $type);
+			$stmt->bindValue($key, $param, $type);
 		}
 		$stmt->execute();
 		$fetch = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$stmt->closeCursor();
+		return $fetch;
 	}
 
 	public function close() {
