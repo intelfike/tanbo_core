@@ -38,7 +38,10 @@ require_once $page_path;
 
 $obj = new $class($class, $method);
 $obj->parse_params_from_web();
-$obj->$method(); // srcで定義した関数を呼び出し
+$redirect = $obj->$method(); // srcで定義した関数を呼び出し
+if (!empty($redirect)) {
+	$redirect->execute();
+}
 $obj->render();
 
 ?>

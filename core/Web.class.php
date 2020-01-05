@@ -25,7 +25,7 @@ class Web extends TanboRoot {
 
 		$config = new Config(CONFIGS_ROOT);
 		$lib = new Lib(LIBS_ROOT);
-		$lib->load_all(["DB", "Smarty"]);
+		$lib->load_all(["DB", "Smarty", "Redirect"]);
 		// DB設定
 		$db_conf = $config->load_json_ver1("DB");
 		$con = $db_conf["connection"];
